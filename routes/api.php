@@ -1,8 +1,13 @@
 <?php
 
-use ProcessMaker\Package\PackageCrud\Http\Controllers\PackageCrudController;
+use ProcessMaker\Package\PackageCrud\Http\Controllers\Api\CrudController;
 
 Route::group(['middleware' => ['auth:api', 'bindings']], function () {
-    Route::get('admin/package-crud/fetch', [PackageCrudController::class, 'fetch'])->name('package.skeleton.fetch');
-    Route::apiResource('admin/package-crud', PackageCrudController::class);
+    // Route::apiResource('package-crud/crud', CrudController::class);
+    Route::group(['prefix' => 'package-crud', 'as' => 'api.package-crud.'], function () {
+        Route::get('crud', [CrudController::class, 'index'])->name('crud.index');
+        Route::post('crud', [CrudController::class, 'store'])->name('crud.store');
+        Route::put('crud/{uuid}', [CrudController::class, 'update'])->name('crud.update');
+        Route::delete('crud/{uuid}', [CrudController::class, 'destroy'])->name('crud.destroy');
+    });
 });
