@@ -3,7 +3,6 @@
 use ProcessMaker\Package\PackageCrud\Http\Controllers\Api\CrudController;
 
 Route::group(['middleware' => ['auth:api', 'bindings']], function () {
-    // Route::apiResource('package-crud/crud', CrudController::class);
     Route::group(['prefix' => 'package-crud', 'as' => 'api.package-crud.'], function () {
         Route::get('crud', [CrudController::class, 'index'])->name('crud.index');
         Route::post('crud', [CrudController::class, 'store'])->name('crud.store');
