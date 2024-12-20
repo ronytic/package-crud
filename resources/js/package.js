@@ -11,9 +11,11 @@ new Vue({
   components: { SampleListing },
   data: {
     filter: '',
-    sample: {
+    crud: {
       id: '',
       name: '',
+      description: '',
+      code: '',
       status: 'ENABLED',
     },
     addError: {
@@ -30,14 +32,17 @@ new Vue({
       }]);
     },
     edit(data) {
-      this.sample.name = data.name;
-      this.sample.status = data.status;
-      this.sample.id = data.id;
+      this.crud.uuid = data.uuid;
+      this.crud.name = data.name;
+      this.crud.description = data.description;
+      this.crud.code = data.code;
+      this.crud.status = data.status;
+      this.crud.id = data.id;
       this.action = 'Edit';
       this.$refs.modal.show();
     },
     validateForm() {
-      if (this.sample.name === '' || this.sample.name === null) {
+      if (this.crud.name === '' || this.crud.name === null) {
         this.submitted = false;
         this.addError.name = ['The name field is required'];
         return false;
@@ -50,15 +55,19 @@ new Vue({
       if (this.validateForm()) {
         this.addError.name = null;
         if (this.action === 'Add') {
-          ProcessMaker.apiClient.post('admin/package-crud', {
-            name: this.sample.name,
-            status: this.sample.status,
+          ProcessMaker.apiClient.post('package-crud/crud', {
+            name: this.crud.name,
+            description: this.crud.description,
+            code: this.crud.code,
+            status: this.crud.status,
           })
             .then(() => {
               this.reload();
-              ProcessMaker.alert('Sample successfully added ', 'success');
-              this.sample.name = '';
-              this.sample.status = 'ENABLED';
+              ProcessMaker.alert('Record successfully added ', 'success');
+              this.crud.name = '';
+              this.crud.description = '';
+              this.crud.code = '';
+              this.crud.status = 'active';
             })
             .catch((error) => {
               if (error.response.status === 422) {
@@ -70,15 +79,19 @@ new Vue({
               this.$refs.modal.hide();
             });
         } else {
-          ProcessMaker.apiClient.patch(`admin/package-crud/${this.sample.id}`, {
-            name: this.sample.name,
-            status: this.sample.status,
+          ProcessMaker.apiClient.put(`package-crud/crud/${this.crud.uuid}`, {
+            name: this.crud.name,
+            description: this.crud.description,
+            code: this.crud.code,
+            status: this.crud.status,
           })
             .then(() => {
               this.reload();
-              ProcessMaker.alert('Sample successfully updated ', 'success');
-              this.sample.name = '';
-              this.sample.status = 'ENABLED';
+              ProcessMaker.alert('Record successfully updated ', 'success');
+              this.crud.name = '';
+              this.crud.description = '';
+              this.crud.code = '';
+              this.crud.status = 'active';
             })
             .catch((error) => {
               if (error.response.status === 422) {
@@ -97,7 +110,9 @@ new Vue({
       this.action = 'Add';
       this.id = '';
       this.addError.name = null;
-      this.sample.name = '';
+      this.crud.name = '';
+      this.crud.code = '';
+      this.crud.description = '';
     },
   },
 });

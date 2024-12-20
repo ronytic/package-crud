@@ -4,6 +4,7 @@
       :data-manager="dataManager"
       :sort-order="sortOrder"
       :css="css"
+      bordered="true"
       :api-mode="false"
       :fields="fields"
       :data="data"
@@ -19,7 +20,7 @@
           <div class="popout">
             <b-btn
               v-b-tooltip.hover
-              variant="action"
+              variant=""
               data-action="Edit"
               data-toggle="modal"
               data-target="#sampleModal"
@@ -30,7 +31,7 @@
             </b-btn>
             <b-btn
               v-b-tooltip.hover
-              variant="action"
+              variant="danger"
               title="Remove"
               @click="onAction('remove-item', props.rowData, props.rowIndex)"
             >
@@ -76,9 +77,20 @@ export default {
           sortField: 'name',
         },
         {
+          title: 'Description',
+          name: 'description',
+          sortField: 'description',
+        },
+        {
+          title: 'Code',
+          name: 'code',
+          sortField: 'code',
+        },
+        {
           title: 'Status',
           name: 'status',
           sortField: 'status',
+          callback: 'formatStatus',
         },
         {
           title: 'Created at',
@@ -113,11 +125,11 @@ export default {
         case 'remove-item':
           ProcessMaker.confirmModal(
             'Caution!',
-            `Are you sure to inactive the sample '${data.name}'?`,
+            `Are you sure to delete <b>'${data.name}'</b>?`,
             '',
             () => {
-              ProcessMaker.apiClient.delete(`admin/package-crud/${data.id}`).then(() => {
-                ProcessMaker.alert(`Sample ${data.name} has been deleted`, 'warning');
+              ProcessMaker.apiClient.delete(`package-crud/crud/${data.uuid}`).then(() => {
+                ProcessMaker.alert(`${data.name} has been deleted`, 'warning');
                 this.$emit('reload');
               });
             },
@@ -134,7 +146,7 @@ export default {
       // Load from our api client
       ProcessMaker.apiClient
         .get(
-          `admin/package-crud/fetch?page=${this.page}&per_page=${this.perPage}&filter=${this.filter}&order_by=${this.orderBy}&order_direction=${this.orderDirection}`,
+          `package-crud/crud?page=${this.page}&per_page=${this.perPage}&filter=${this.filter}&order_by=${this.orderBy}&order_direction=${this.orderDirection}`,
         )
         .then((response) => {
           this.data = this.transform(response.data);

@@ -14,8 +14,8 @@ class AddToMenus
 
         // Add a menu option to the top to point to our page
 
-        $menu = Menu::get('topnav');
-        $menu->add(__('CRUD'), ['route' => 'package.crud.tab.index']);
+        // $menu = Menu::get('topnav');
+        // $menu->add(__('CRUD'), ['route' => 'package.crud.tab.index']);
 
         // Add a option in the admin menu to point to our page
         $menu = Menu::get('sidebar_admin')->first();
@@ -23,7 +23,7 @@ class AddToMenus
         // Add our menu item to the top nav
         $menu->add(__('CRUD'), [
             'route' => 'package.crud.index',
-            'icon' => 'fa-puzzle-piece',
+            'icon' => 'fa-archive',
         ]);
         return $next($request);
     }

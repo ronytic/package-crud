@@ -98,7 +98,7 @@ export default {
   props: ['perPageSelectEnabled', 'single', 'plural'],
   data() {
     return {
-      perPage: 10,
+      perPage: 15,
     };
   },
   computed: {
