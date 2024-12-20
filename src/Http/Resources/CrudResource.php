@@ -21,8 +21,8 @@ class CrudResource extends JsonResource
             'description' => $this->description,
             'code' => $this->code,
             'status' => $this->status,
-            'created_at' => $this->created_at,
-            'updated_at' => $this->updated_at,
+            'created_at' => $this->created_at->format('Y-m-d H:i:s'),
+            'updated_at' => $this->updated_at->format('Y-m-d H:i:s'),
         ];
     }
     public function with($request)
