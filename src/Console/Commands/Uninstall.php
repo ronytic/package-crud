@@ -28,5 +28,18 @@ class Uninstall extends Command
     public function handle()
     {
         $this->info('Package Crud package Uninstalled');
+        //remove migrations
+        $this->uninstallMigrations(__DIR__ . '/../../../database/migrations');
+    }
+
+    /**
+     * Install migrations
+     *
+     * @param array $pluginMigrationsPaths
+     * @return void
+     */
+    private function uninstallMigrations(string $pluginMigrationsPaths)
+    {
+        app('migrator')->rollback($pluginMigrationsPaths);
     }
 }

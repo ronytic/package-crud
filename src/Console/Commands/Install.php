@@ -34,6 +34,16 @@ class Install extends PackageInstallCommand
         ]);
     }
 
+    /**
+     * Add database tables
+     * @return void
+     */
+    public function addDatabaseTables()
+    {
+        $this->info('Adding database tables');
+        $this->installMigrations(__DIR__ . '/../../../database/migrations');
+    }
+
     public function preinstall()
     {
         $this->publishAssets();
@@ -41,11 +51,10 @@ class Install extends PackageInstallCommand
 
     public function install()
     {
+        $this->addDatabaseTables();
     }
 
-    public function postinstall()
-    {
-    }
+    public function postinstall() {}
 
     /**
      * Execute the console command.
@@ -56,6 +65,15 @@ class Install extends PackageInstallCommand
     {
         parent::handle();
         $this->info('Package Crud has been installed');
+    }
 
+    /**
+     * Install migrations
+     * @param string $pluginMigrationsPaths
+     * @return void
+     */
+    private function installMigrations(string $pluginMigrationsPaths)
+    {
+        app('migrator')->run($pluginMigrationsPaths);
     }
 }
