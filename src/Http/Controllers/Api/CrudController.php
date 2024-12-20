@@ -34,7 +34,7 @@ class CrudController extends Controller
             $query->orderBy(
                 $request->input('order_by', $order_by),
                 $request->input('order_direction', $order_direction)
-            )->paginate($request->input('per_page', 10));
+            )->paginate($request->input('per_page', 15));
 
         //return new ApiCollection($response);
         return new CrudCollection($response);
