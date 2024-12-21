@@ -24,7 +24,7 @@ __('CRUD') => route('package.crud.index'),
 @section('content')
     <div class="container page-content" id="app-package-crud">
         <b-card>
-            <div class="row">
+            <div class="row" v-show="show" style="display: none">
                 <div class="col">
                     <div class="input-group">
                         <div class="input-group-prepend">
@@ -40,7 +40,7 @@ __('CRUD') => route('package.crud.index'),
                 </div>
             </div>
             <div class="container-fluid">
-                <sample-listing id="sample-list" ref="listing" :filter="filter" v-on:reload="reload"></sample-listing>
+                <crud-listing id="sample-list" ref="listing" :filter="filter" v-on:reload="reload"></crud-listing>
             </div>
 
             <b-modal id="sample-modal"

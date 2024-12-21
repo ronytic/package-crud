@@ -1,16 +1,17 @@
 import Vue from 'vue';
 import BootstrapVue from 'bootstrap-vue';
 import VModal from 'vue-js-modal';
-import SampleListing from './components/SamplesListing.vue';
+import CrudListing from './components/CrudListing.vue';
 
 Vue.use(VModal);
 Vue.use(BootstrapVue);
 
 new Vue({
   el: '#app-package-crud',
-  components: { SampleListing },
+  components: { CrudListing },
   data: {
     filter: '',
+    show: true,
     crud: {
       id: '',
       name: '',
