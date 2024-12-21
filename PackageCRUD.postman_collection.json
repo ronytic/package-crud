@@ -1,0 +1,167 @@
+{
+	"info": {
+		"_postman_id": "153923f7-659f-4d41-8385-14225f1cac16",
+		"name": "Package CRUD",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+		"_exporter_id": "7727727",
+		"_collection_link": "https://red-space-36903.postman.co/workspace/PM4---Packages~caaccd2b-ea21-4371-ad84-55b514db63b8/collection/7727727-153923f7-659f-4d41-8385-14225f1cac16?action=share&source=collection_link&creator=7727727"
+	},
+	"item": [
+		{
+			"name": "List of Records",
+			"protocolProfileBehavior": {
+				"disableBodyPruning": true
+			},
+			"request": {
+				"method": "GET",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n    \"page\": 2\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "{{host}}/api/1.0/package-crud/crud",
+					"host": [
+						"{{host}}"
+					],
+					"path": [
+						"api",
+						"1.0",
+						"package-crud",
+						"crud"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Save New Record",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n    \"name\": \"name2\",\n    \"description\": \"description2\",\n    \"code\": \"22\",\n    \"status\": \"active\"\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "{{host}}/api/1.0/package-crud/crud",
+					"host": [
+						"{{host}}"
+					],
+					"path": [
+						"api",
+						"1.0",
+						"package-crud",
+						"crud"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Update Record",
+			"request": {
+				"method": "PUT",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n    \"name\": \"name update2\",\n    \"description\": \"description update\",\n    \"code\": \"554\",\n    \"status\": \"active\"\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "{{host}}/api/1.0/package-crud/crud/9dc5b6f2-25d1-4608-a49c-a907701e1253",
+					"host": [
+						"{{host}}"
+					],
+					"path": [
+						"api",
+						"1.0",
+						"package-crud",
+						"crud",
+						"9dc5b6f2-25d1-4608-a49c-a907701e1253"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Delete Record",
+			"request": {
+				"method": "DELETE",
+				"header": [],
+				"url": {
+					"raw": "{{host}}/api/1.0/package-crud/crud/9dc5c2a7-0b9d-48d1-8c87-59067e7b93ac",
+					"host": [
+						"{{host}}"
+					],
+					"path": [
+						"api",
+						"1.0",
+						"package-crud",
+						"crud",
+						"9dc5c2a7-0b9d-48d1-8c87-59067e7b93ac"
+					]
+				}
+			},
+			"response": []
+		}
+	],
+	"auth": {
+		"type": "bearer",
+		"bearer": [
+			{
+				"key": "token",
+				"value": "{{token}}",
+				"type": "string"
+			}
+		]
+	},
+	"event": [
+		{
+			"listen": "prerequest",
+			"script": {
+				"type": "text/javascript",
+				"packages": {},
+				"exec": [
+					""
+				]
+			}
+		},
+		{
+			"listen": "test",
+			"script": {
+				"type": "text/javascript",
+				"packages": {},
+				"exec": [
+					""
+				]
+			}
+		}
+	],
+	"variable": [
+		{
+			"key": "host",
+			"value": "https://localhost",
+			"type": "string"
+		},
+		{
+			"key": "token",
+			"value": "",
+			"type": "string"
+		}
+	]
+}
