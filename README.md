@@ -27,3 +27,6 @@ npm run dev
 ## Uninstall
 * Use `php artisan package-crud:uninstall` to uninstall the package
 * Use `composer remove processmaker/package-crud` to remove the package completely
+
+## PHPUnit
+ ![image](https://github.com/user-attachments/assets/598a7fd3-e483-4d84-9d3f-a09298dcc1d1)
