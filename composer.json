@@ -1,14 +1,14 @@
 {
     "name": "processmaker/package-crud",
     "friendly_name": "Package Crud",
-    "description": "Package skeleton to develop a package for ProcessMaker 4",
+    "description": "Package CRUD for ProcessMaker 4",
     "license": "AGPL-3.0-or-later",
     "version": "0.0.2",
     "type": "project",
     "authors": [
         {
-            "name": "DevOps",
-            "email": "devops@processmaker.com"
+            "name": "Ronald Nina",
+            "email": "ronald.nina@processmaker.com"
         }
     ],
     "require": {

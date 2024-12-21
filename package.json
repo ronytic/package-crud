@@ -2,7 +2,7 @@
   "name": "package-crud",
   "version": "0.0.1",
   "description": "Package skeleton to start a develop in ProcessMaker 4",
-  "author": "DevOps <devops@processmaker.com>",
+  "author": "Ronald Nina <ronald.nina@processmaker.com>",
   "license": "ISC",
   "homepage": "https://github.com/ProcessMaker/package-crud",
   "scripts": {
