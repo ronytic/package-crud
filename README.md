@@ -1,6 +1,9 @@
 # Processmaker Package Crud
 This package provides the necessary base code to start the developing a package in ProcessMaker 4.
 
+## Postman Collection
+Download the postman collection to see the endpoints: [PackageCRUD.postman_collection.json](PackageCRUD.postman_collection.json)
+
 ## Development
 If you need to create a new ProcessMaker package run the following commands:
 
