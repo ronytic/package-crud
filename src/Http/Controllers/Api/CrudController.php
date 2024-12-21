@@ -10,6 +10,7 @@ use ProcessMaker\Http\Resources\ApiCollection;
 use ProcessMaker\Package\PackageCrud\Models\PsCrud;
 use ProcessMaker\Package\PackageCrud\Http\Resources\CrudResource;
 use ProcessMaker\Package\PackageCrud\Http\Resources\CrudCollection;
+use Illuminate\Support\Facades\Auth;
 
 
 class CrudController extends Controller
@@ -17,6 +18,13 @@ class CrudController extends Controller
 
     public function index(Request $request)
     {
+        // API protected, only administrators can access
+        if (!Auth::user()->is_administrator) {
+            return response()->json([
+                'message' => 'You do not have permission to access this resource'
+            ], 403);
+        }
+
         $query = PsCrud::query();
 
         $filter = $request->input('filter', '');
@@ -36,13 +44,19 @@ class CrudController extends Controller
                 $request->input('order_direction', $order_direction)
             )->paginate($request->input('per_page', 15));
 
-        //return new ApiCollection($response);
         return new CrudCollection($response);
     }
 
     public function store(Request $request)
     {
         try {
+            // API protected, only administrators can access
+            if (!Auth::user()->is_administrator) {
+                return response()->json([
+                    'message' => 'You do not have permission to access this resource'
+                ], 403);
+            }
+
             // Validate the request
             $this->validate($request, [
                 'name' => 'required',
@@ -71,6 +85,13 @@ class CrudController extends Controller
     public function update(Request $request, $uuid)
     {
         try {
+
+            // API protected, only administrators can access
+            if (!Auth::user()->is_administrator) {
+                return response()->json([
+                    'message' => 'You do not have permission to access this resource'
+                ], 403);
+            }
             // Validate the request
             $this->validate($request, [
                 'name' => 'required',
@@ -104,6 +125,13 @@ class CrudController extends Controller
     public function destroy($uuid)
     {
         try {
+
+            // API protected, only administrators can access
+            if (!Auth::user()->is_administrator) {
+                return response()->json([
+                    'message' => 'You do not have permission to access this resource'
+                ], 403);
+            }
             // Find the record
             $crud = PsCrud::where('uuid', $uuid)->first();
             if (!$crud) {
@@ -121,6 +149,4 @@ class CrudController extends Controller
             ], 500);
         }
     }
-
-    public function generate($license_generator) {}
 }
